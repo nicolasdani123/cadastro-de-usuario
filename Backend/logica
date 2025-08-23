@@ -1,0 +1,3 @@
+1 cliente chama o metodo get  o servidor ele consulta o banco de dados e o banco ele retorna todos os usuario presentes para o servidor que retorna para o cliente
+2 cliete chama o metodo getById  o servidor ele consultado  o banco de dados  e retorna o usuario com base no id que o cliente enviou
+3 cliente enviar um usuario   usando post o servidor recebe e consulta o banco de dados e retorna
