@@ -7,5 +7,6 @@ namespace WebApplication1.Services
         Task<IEnumerable<UserReadDto>> GetAllAsync();
         Task<UserReadDto> GetByIdAsync(int id);
         Task<UserReadDto> CreateAsync(UserCreateDto dto);
+        Task<UserReadDto> UpdateAsync(int id,UserCreateDto dto);
     }
 }

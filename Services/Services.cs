@@ -27,8 +27,9 @@ namespace WebApplication1.Services
 
         public async Task<UserReadDto> GetByIdAsync(int id)
         {
+            if (id <= 0) return null;
             var user = await _repository.GetByIdAsync(id);
-            if (user == null || id <= 0) return null;
+            if (user == null) return null;
 
             var ReadDto = _mapper.Map<UserReadDto>(user);
             return ReadDto;
@@ -39,13 +40,28 @@ namespace WebApplication1.Services
         {
             if (dto == null) return null;
 
-            var CreateDto = _mapper.Map<User>(dto);
-            await _repository.CreateAsync(CreateDto);
+            var   userEntity = _mapper.Map<User>(dto);
+            await _repository.CreateAsync(userEntity);
             await _repository.SavesChangesAsync();
 
-            var ReadDto = _mapper.Map<UserReadDto>(CreateDto);
+            var ReadDto = _mapper.Map<UserReadDto>(userEntity);
             return ReadDto;
 
+        }
+
+        public async Task<UserReadDto> UpdateAsync(int id, UserCreateDto dto)
+        {
+            if (dto == null || id <= 0) return null;
+
+            var userEntity = await _repository.GetByIdAsync(id);
+            if (userEntity == null) return null;
+
+            _mapper.Map(dto, userEntity);
+              
+            _repository.Update(userEntity);
+            await _repository.SavesChangesAsync();
+
+             return _mapper.Map<UserReadDto>(userEntity);
         }
     }
 }

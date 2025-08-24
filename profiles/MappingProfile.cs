@@ -11,6 +11,7 @@ namespace WebApplication1.Mapping
         {
             CreateMap<User, UserReadDto>();
             CreateMap<UserCreateDto, User>();
+            CreateMap<UserCreateDto, UserReadDto>();
         }
     }
 }

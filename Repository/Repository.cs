@@ -29,9 +29,14 @@ namespace WebApplication1.Repository
             await _dbset.AddAsync(entity);
         }
 
+
+        public void Update(T entity)
+        {
+            _dbset.Update(entity);
+      }
         public async Task SavesChangesAsync()
         {
             await _Context.SaveChangesAsync();
-         }
+        }
     }
 }

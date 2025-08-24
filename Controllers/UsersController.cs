@@ -69,5 +69,23 @@ namespace WebApplication1.Controllers
                 return StatusCode(500, "Erro no servidor!");
             }
         }
+
+        public async Task<ActionResult<UserReadDto>> UpdateAsync(int id, UserCreateDto dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var userUpdateAsync = await _service.UpdateAsync(id, dto);
+                if (userUpdateAsync == null) return BadRequest("dados invalidos");
+
+                return CreatedAtRoute("RouteGetById", new { id = userUpdateAsync.Id }, userUpdateAsync);
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex, "Error ao altualizar usuario do metodo UpdateAsync");
+                return StatusCode(500, "Error no servidor!");
+            }
+        }
     }
 }

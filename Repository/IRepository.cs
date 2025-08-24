@@ -4,6 +4,7 @@
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
+        void Update(T entity);
 
         Task CreateAsync(T entity);
          Task SavesChangesAsync();
